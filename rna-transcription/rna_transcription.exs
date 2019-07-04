@@ -8,17 +8,18 @@ defmodule RNATranscription do
   'UGAC'
   """
   @spec to_rna([char]) :: [char]
+
   def to_rna(dna) do
-    IO.puts([dna])
+    tranlate_map = %{
+      ?G => 'C',
+      ?C => 'G',
+      ?T => 'A',
+      ?A => 'U'
+    }
 
     dna
-    |> Enum.map(fn c -> translate(c) end)
+    |> Enum.map(fn c -> tranlate_map[c] end)
     |> Enum.join()
     |> to_charlist()
   end
-
-  defp translate(?G), do: 'C'
-  defp translate(?C), do: 'G'
-  defp translate(?T), do: 'A'
-  defp translate(?A), do: 'U'
 end
